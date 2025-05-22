@@ -25,13 +25,23 @@ Using SQL, I aimed to answer the following questions. Then, used the data I foun
 - 
 </details>
 
-2. How many days has each customer visited the restaurant?
+<details><summary><strong>2. How many days has each customer visited the restaurant?</strong></summary>
+	
+```sql
+SELECT
+   customer_id,
+   COUNT(DISTINCT order_date)
+FROM sales
+GROUP BY customer_id
+```
+</details>
+
 <details><summary><strong>3. What was the first item from the menu purchased by each customer?</strong></summary>
 
 ```sql
 WITH CTE AS(
 SELECT
-	  customer_id,
+    customer_id,
     order_date,
     product_name,
 RANK() OVER(PARTITION BY customer_id ORDER BY order_date ASC)
@@ -42,14 +52,42 @@ FROM CTE
 WHERE rank = 1
 ```
 </details>
-5. What is the most purchased item on the menu and how many times was it purchased by all customers?
-6. Which item was the most popular for each customer?
 
-### 🔍 Extended Analysis
-6. Who are the highest-value customers based on total spend?
-7. What is the average number of days between visits for each customer?
-8. Which menu items are most frequently ordered overall?
-9. Are there any noticeable trends in ordering behavior over time?
+<details><summary><strong>4. What is the most purchased item on the menu and how many times was it purchased by all customers?</strong></summary>
+
+```sql
+SELECT product_name,
+COUNT(order_date) as orders
+FROM sales
+INNER JOIN menu on sales.product_id = menu.product_id
+GROUP BY product_name
+ORDER BY COUNT(order_date) DESC
+LIMIT 1
+```
+</details>
+
+<details><summary><strong>5. Which item was the most popular for each customer?</strong></summary>
+
+```sql
+WITH CTE AS(
+SELECT 
+    product_name,
+    customer_id,
+COUNT(order_date) as orders,
+RANK() OVER(PARTITION BY customer_id ORDER BY COUNT(order_date) DESC)
+FROM sales
+INNER JOIN menu on sales.product_id = menu.product_id
+GROUP BY 
+    product_name,
+    customer_id
+)
+SELECT
+    customer_id,
+    product_name
+FROM CTE
+WHERE rank=1
+```
+</details>
 
 ---
 
@@ -72,26 +110,3 @@ WHERE rank = 1
 
 ## 📂 Project Structure
 
-
-## 📊 Core Questions & Solutions
-
-<details>
-  <summary>🍽️ <strong>1. What is the total amount each customer spent at the restaurant?</strong></summary>
-
-  <br>
-
-  💡 *Business Goal:* Understand how much each customer contributes in revenue.
-
-  ### 🔍 SQL Query:
-  ```sql
-  SELECT
-    s.customer_id,
-    SUM(m.price) AS total_spent
-  FROM sales s
-  JOIN menu m ON s.product_id = m.product_id
-  GROUP BY s.customer_id;
-```
-## insight
-- customer c is a big back
-
-</details>
