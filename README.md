@@ -26,7 +26,7 @@ Using SQL, I answered the following business questions and analyzed the results 
 
 **📈 Why It Matters:**
 - This query reveals the total spending per customer.
-- Customers who spend the most are strong candidates for **loyalty programs, personalized offers**, or **VIP engagement strategies** positively to offers and other loyalty rewards at the restaurant.
+- Customers who spend the most are strong candidates for **loyalty programs, personalized offers**, or **VIP engagement strategies** and other loyalty rewards at the restaurant.
 </details>
 
 <details><summary><strong>2. How many days has each customer visited the restaurant?</strong></summary>
@@ -45,7 +45,7 @@ GROUP BY customer_id
 
 **📈 Why It Matters:**
 - it can help identify which menu items or patterns are encouraging repeat visits.
-- This insight could support **customer loyalty strategies** or **menu adjustments** based on returning behavior. The next few questions will used to cross-reference and better understand what drives the customer loyalty.
+- This insight could support **customer loyalty strategies** or **menu adjustments** based on returning behavior. The next few questions will be used to cross-reference and better understand what drives the customer loyalty.
 </details>
 
 <details><summary><strong>3. What was the first item from the menu purchased by each customer?</strong></summary>
@@ -133,7 +133,8 @@ WHERE rank=1
 
 ---
 ## Visualizations
-Most Popular Menu Item
+**Most Popular Menu Item**
+
 ![Most Popular Menu Item](images/menu_popular.png)
 
 
