@@ -20,9 +20,13 @@ Using SQL, I aimed to answer the following questions. Then, used the data I foun
   GROUP BY s.customer_id;
   ```
 ## Insights
-- In order to solve this question, we need to combine the tables by using **JOIN** so that the prices and menu items can line up. I did this by combining the 'sales' and 'menu.table' using 'product_id' to access the item prices.
-- Then, we must find the **SUM** of the values in order to see what each customer spent.
-- The results show what each customer spent in total at the restaurant. This information is useful for identifying which customers would respond positively to offers and other loyalty rewards at the restaurant.
+**🔍 How I Solved It:**
+- I joined the `sales` and `menu` tables using `product_id` to access the item prices.
+- Then, I used `SUM()` to calculate the total amount each customer spent.
+
+**📈 Why It Matters:**
+- This query reveals the total spending per customer.
+- Customers who spend the most are strong candidates for **loyalty programs, personalized offers**, or **VIP engagement strategies** positively to offers and other loyalty rewards at the restaurant.
 </details>
 
 <details><summary><strong>2. How many days has each customer visited the restaurant?</strong></summary>
@@ -35,8 +39,13 @@ FROM sales
 GROUP BY customer_id
 ```
 ## Insights
-- The most important function here is COUNT(DISTINCT) as it will show exactly how many times each customer (A,B,C) have visited the restaurant without cluttering the data table.
-- Customer B is the most frequently returning customer. On its own, this data is still vague, but can help better understand what items keeps this particular customer returning to the restaurant.
+**🔍 How I Solved It:**
+- The most important function here is `COUNT(DISTINCT order_date)` as it will show exactly how many times each customer (A,B,C) have visited the restaurant without cluttering the data table.
+- Customer B visited most frequently.
+
+**📈 Why It Matters:**
+- it can help identify which menu items or patterns are encouraging repeat visits.
+- This insight could support **customer loyalty strategies** or **menu adjustments** based on returning behavior. The next few questions will used to cross-reference and better understand what drives the customer loyalty.
 </details>
 
 <details><summary><strong>3. What was the first item from the menu purchased by each customer?</strong></summary>
@@ -55,8 +64,13 @@ FROM CTE
 WHERE rank = 1
 ```
 ## Insights
-- Using ROW NUMBER() allows me to retrieve exactly 1 item per customer. The ORDER BY function allows me to see what the customer ordered on the first date they came in.
-- This information is important in identifying what items drew the customer to the restaurant in the first place and how we can capitalize on the most alluring menu items.
+**🔍 How I Solved It:**
+- Using `ROW NUMBER()` allows me to retrieve exactly 1 item per customer.
+- The `ORDER BY` function allows me to see what the customer ordered on the first date they came in.
+
+**📈 Why It Matters:**
+- This information is important in identifying what items drew the customer to the restaurant in the first place
+- These “first impression” dishes could be promoted to new customers or highlighted in marketing campaigns to **boost first-time engagement**.
 </details>
 
 <details><summary><strong>4. What is the most purchased item on the menu and how many times was it purchased by all customers?</strong></summary>
@@ -71,8 +85,13 @@ ORDER BY COUNT(order_date) DESC
 LIMIT 1
 ```
 ## Insights
-- Using the COUNT function in the query, I was able to quantify each time the menu item was ordered as a single number. INNER JOIN was used to combine the product_id on the menu with the amount of sales. Thus, using the COUNT function at the end of the query shows how many times each menu item was purchased.
-- In this restaurant the most purchased item was ramen. This information can be usefull in identifying the most popular menu items that can be used for customer retention. That way, marketing strategies can be geared towards selling this particular menu item.
+**🔍 How I Solved It:**
+- Using the `COUNT` function in the query, I was able to quantify each time the menu item was ordered as a single number.
+- `INNER JOIN` was used to combine the product_id on the menu with the amount of sales. Thus, using the `COUNT` function at the end of the query shows how many times each menu item was purchased.
+
+**📈 Why It Matters:**
+- In this restaurant the most purchased item was ramen.
+- This information helps identify the **most popular menu items**, which can be leveraged to **improve customer retention**. Marketing strategies can then be tailored to promote these high-performing items and **encourage repeat visits**.
 </details>
 
 <details><summary><strong>5. Which item was the most popular for each customer?</strong></summary>
@@ -97,14 +116,25 @@ FROM CTE
 WHERE rank=1
 ```
 ## Insights
-- This query is written similarly to the previous one to find the data for each customer. The difference in this query is the use of rank=1, which will indicate the most popular item purchased byt each customer.
-- The data can be used to create customized deals and rewards for customers based on their preferred menu items to keep bringing them back to the restaurant. The data can also be used to suggest similar menu items to the cusomter if they would like to try new menu items that have a similar taste.
+**🔍 How I Solved It:**
+- This query builds on the previous one to identify the most frequently purchased item for each customer.
+- It uses `RANK()` to rank each menu item by purchase count per customer and filters to only include those with `rank = 1`.
+  
+**📈 Why It Matters:**
+- This reveals customer preferences, which can inform **personalized marketing** or menu optimization strategies.
+- These insights can support initiatives like **customer segmentation** or targeted offers based on purchase behavior.
 </details>
 
 ---
 
 ## 🧠 Key Insights
+- The most popular menu item at the restaurant is ramen. This insight can be used to design targeted promotions, such as featuring ramen in **loyalty rewards** or **new customer offers**, to drive both retention and acquisition.
+- Customer B has returned to the restaurant the most amount of times while Customer A has the highest total spend. Even though Customer B has a preference for the curry, ramen remains the most purchased item. These insights suggest that targeted promotions based on **individual preferences**—rather than a one-size-fits-all approach—could **improve customer engagement and loyalty**.
 
+---
+## Visualizations
+# Most Popular Menu Item
+![Most Popular Menu Item](images/menu_popular.png)
 
 
 ---
@@ -118,4 +148,3 @@ WHERE rank=1
 ---
 
 ## 📂 Project Structure
-
