@@ -1,12 +1,12 @@
 # 🍽️ Danny's Diner SQL Case Study
 
-This project is part of the [8-Week SQL Challenge](https://8weeksqlchallenge.com/) by Data With Danny.
+This project is part of the [8-Week SQL Challenge](https://8weeksqlchallenge.com/) by Data With Danny. I focused on the first five questions using SQL queries to uncover insights that could help improve customer retention and drive revenue growth.
 
 ---
 
 ## 📊 Objectives
 
-Using SQL, I aimed to answer the following questions. Then, used the data I found to see how to improve customer retention and increase revenue.
+Using SQL, I answered the following business questions and analyzed the results to identify opportunities for enhancing customer loyalty and boosting sales.
 
 ### ✅ Core Questions
 <details><summary><strong>1. What is the total amount each customer spent at the restaurant?</strong></summary>
@@ -133,7 +133,7 @@ WHERE rank=1
 
 ---
 ## Visualizations
-# Most Popular Menu Item
+Most Popular Menu Item
 ![Most Popular Menu Item](images/menu_popular.png)
 
 
@@ -142,9 +142,12 @@ WHERE rank=1
 ## 🛠️ Tools Used
 
 - **SQL** – Window functions, joins, aggregations
-- **Mode SQL Editor** – To run and test queries
+- **DB-Fiddle SQL Editor** – To run and test queries
 - **Google Sheets / Excel** – For basic visualizations
 
 ---
 
-## 📂 Project Structure
+## Conclusion
+- This project showcases the SQL and data analysis skills I developed through the Google Coursera Data Analytics course.
+- I applied key concepts such as joins, window functions, and aggregations to solve real-world business questions.
+- This exercise improved my ability to communicate data-driven recommendations clearly and effectively.
